@@ -66,10 +66,13 @@ RecipeSchema = new SimpleSchema({
 });
 
 Meteor.methods({
-  toggleMenuItem: function() {
-    Recipes.update()
+  toggleMenuItem: function(id, currentState) {
+    Recipes.update(id, {
+      $set: {
+        inMenu: !currentState
+      }
+    });
   }
-
 });
 
 Recipes.attachSchema( RecipeSchema );
